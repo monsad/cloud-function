@@ -1,12 +1,11 @@
-# Imports the BigQuery client library
 from google.cloud import bigquery
 
-def hello_world(request):
-        # Replace these values according to your project
-    project_name = "xcaliber-betitonpartners" 
-    bucket_name = "betitionpartners_prd" 
-    dataset_name = "betition_test" 
-    table_name = "dynamic_variables" 
+def backup(request):
+       
+    project_name = "project-clientname" 
+    bucket_name = "bucket_name_client" 
+    dataset_name = "client_env" 
+    table_name = "dynamic_variable" 
     destination_uri = "gs://{}/{}".format(bucket_name, "bq_export.csv.gz")
 
     bq_client = bigquery.Client(project=project_name)
@@ -20,7 +19,7 @@ def hello_world(request):
     extract_job = bq_client.extract_table(
         table_to_export,
         destination_uri,
-        # Location must match that of the source table.
+        
         location="US",
         job_config=job_config,
     )  
